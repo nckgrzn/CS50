@@ -1,0 +1,8 @@
+AIzaSyDdv_kXv1XG9ahDJCGBLd5U3LWEI0JTO5w
+
+#Notes
+    Open a new map
+    Set markers on certain coordinates
+    Pull headlines for those coordinates
+    Parse RSS feeds from Google News using Python and then return articles' titles and links to our web app via Ajax as JSON
+    Use click events on the markers to display the respective headlines in an info window

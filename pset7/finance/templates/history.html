@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    History
+{% endblock %}
+
+{% block main %}
+    <head>
+        <style>
+            tr
+            {
+                border: 1px solid #E9ECEF;
+            }
+            th, td
+            {
+                padding: 10px;
+            }
+            tr:nth-child(even)
+            {
+                background: #F2F2F2;
+            }
+        </style>
+    </head>
+    <table style="width:100%">
+        <tr>
+            <th>Symbol</th>
+            <th>Stock</th>
+            <th>Shares</th>
+            <th>Price</th>
+            <th>Type</th>
+            <th>Timestamp</th>
+        </tr>
+
+        {% for transaction in transactions %}
+            <tr>
+                <td>{{ transaction["symbol"] }}</td>
+                <td>{{ transaction["stock"] }}</td>
+                <td>{{ transaction["shares"] }}</td>
+                <td>{{ '%0.2f' % transaction["price"] }}</td>
+                <td>{{ transaction["type"] }}</td>
+                <td>{{ transaction["datetime"] }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

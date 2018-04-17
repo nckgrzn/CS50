@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Cash
+{% endblock %}
+
+{% block main %}
+    <head>
+        <style>
+            table
+            {
+              margin-left: auto;
+              margin-right: auto;
+            }
+            tr
+            {
+                border: 1px solid #E9ECEF;
+            }
+            th, td
+            {
+                padding: 10px;
+                text-align: center;
+            }
+            tr:nth-child(even)
+            {
+                background: #F2F2F2;
+            }
+        </style>
+    </head>
+    <table style="width:15%">
+        <tr>
+            <th>Current Balance</th>
+        </tr>
+        <tr>
+            <td>${{ '%0.2f' % funds[0]["cash"]  }}</td>
+        </tr>
+    </table>
+
+    <form action="{{ url_for('cash') }}" method="post">
+        <fieldset>
+            <div class="form-group">
+                <input autocomplete="off" autofocus class="form-control" min = "0" name="amount" placeholder="Dollar Amount" type="number"/>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-default" type="submit">Add Cash</button>
+            </div>
+        </fieldset>
+    </form>
+{% endblock %}

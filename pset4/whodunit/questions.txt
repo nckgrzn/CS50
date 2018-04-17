@@ -1,0 +1,24 @@
+1. What’s stdint.h?
+    A: a header file in the C standard library that allows programmers to write more portable code by providing a set of typedefs that specify exact-width integer types, together with the defined minimum and maximum allowable values for each type, using macros
+2. What’s the point of using uint8_t, uint32_t, int32_t, and uint16_t in a program?
+    A: to best utilize storage space by using integers of exact bit lengths and signings
+3. How many bytes is a BYTE, a DWORD, a LONG, and a WORD, respectively?
+    A: 1, 4, 4, 2
+4. What (in ASCII, decimal, or hexadecimal) must the first two bytes of any BMP file be? Leading bytes used to identify file formats (with high probability) are generally called "magic numbers."
+    A: BM
+5. What’s the difference between bfSize and biSize?
+    A: bfSize is the number of bytes required by the file, and biSize is the number of bytes required by the structure.
+6. What does it mean if biHeight is negative?
+    A: If biHeight is negative, indicating a top-down DIB, biCompression must be either BI_RGB or BI_BITFIELDS. Top-down DIBs cannot be compressed.
+7. What field in BITMAPINFOHEADER specifies the BMP’s color depth (i.e., bits per pixel)?
+    A: biBitCount
+8. Why might fopen return NULL in lines 24 and 32 of copy.c?
+    A: fopen will return NULL if it cannot find the files being referenced in those lines.
+9. Why is the third argument to fread always 1 in our code?
+    A: Because we are reading 1 element at a time
+10. What value does line 65 of copy.c assign to padding if bi.biWidth is 3?
+    A: 3
+11. What does fseek do?
+    A: The fseek() function sets the file position indicator for the stream pointed to by stream.
+12. What is SEEK_CUR?
+    A: An integer constant which, when used as the whence argument to the fseek or fseeko functions, specifies that the offset provided is relative to the current file position

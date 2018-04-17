@@ -1,0 +1,40 @@
+#!/usr/bin/env python3
+
+import os
+import sys
+import helpers
+
+from analyzer import Analyzer
+from termcolor import colored
+
+# export API_KEY=mNHrISWyHvpclm2E43cJsVtFY
+# export API_SECRET=6cjLC8hasza8hFdNgQtuobXX3VJEu7kpI1JEWmsNbmFwjOmKsh
+
+# ensure proper usage
+if len(sys.argv) != 2:
+    sys.exit("Usage: ./tweets @username")
+
+# get tweets
+tweets = helpers.get_user_timeline(sys.argv[1], 50)
+if tweets is None:
+    sys.exit("Unable to access tweets from this account.")
+
+# absolute paths to lists
+positives = os.path.join(sys.path[0], "positive-words.txt")
+negatives = os.path.join(sys.path[0], "negative-words.txt")
+
+# initialize analyzer
+analyzer = Analyzer(positives, negatives)
+
+# analyze tweets
+for x in range(len(tweets)):
+    score = analyzer.analyze(tweets[x])
+    if score > 0.0:
+        print("", colored(score, "green"), end = " ")
+        print(colored(tweets[x], "green"))
+    elif score < 0.0:
+        print(colored(score, "red"), end = " ")
+        print(colored(tweets[x], "red"))
+    else:
+        print("", colored(score, "yellow"), end = " ")
+        print(colored(tweets[x], "yellow"))

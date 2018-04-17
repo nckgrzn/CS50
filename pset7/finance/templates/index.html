@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Index
+{% endblock %}
+
+{% block main %}
+    <head>
+        <style>
+            tr
+            {
+                border: 1px solid #E9ECEF;
+            }
+            th, td
+            {
+                padding: 10px;
+            }
+            tr:nth-child(even)
+            {
+                background: #F2F2F2;
+            }
+        </style>
+    </head>
+    <table style="width:100%">
+        <tr>
+            <th>Symbol</th>
+            <th>Stock</th>
+            <th>Shares</th>
+            <th>Price</th>
+            <th>Total</th>
+        </tr>
+
+        {% for stock in stocks %}
+            <tr>
+                <td>{{ stock["symbol"] }}</td>
+                <td>{{ stock["stock"] }}</td>
+                <td>{{ stock["quantities"] }}</td>
+                <td>${{ '%0.2f' % (stockprices[loop.index - 1]) }}</td>
+                <td>${{ '%0.2f' % (stock["quantities"] * stockprices[loop.index - 1]) }}</td>
+            </tr>
+        {% endfor %}
+        <tr>
+            <td>CASH</td>
+            <td></td><td></td><td></td>
+            <td>${{ '%0.2f' % funds[0]["cash"]  }}</td>
+        </tr>
+        <tr>
+            <td></td><td></td><td></td><td></td>
+            <td><b>${{ '%0.2f' % (totalval + funds[0]["cash"]) }}</b></td>
+        </tr>
+    </table>
+{% endblock %}
